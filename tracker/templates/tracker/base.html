@@ -359,6 +359,16 @@
     }
   </style>
   {% block extra_styles %}{% endblock %}
+
+  {% load static %}
+  <!-- PWA -->
+  <link rel="manifest" href="{% static 'tracker/manifest.json' %}">
+  <meta name="theme-color" content="#1C2E4A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="UtangTrack">
+  <link rel="apple-touch-icon" href="{% static 'tracker/icons/icon-192.png' %}">
 </head>
 <body>
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
@@ -452,5 +462,14 @@
     }
   </script>
   {% block extra_scripts %}{% endblock %}
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/tracker/sw.js');
+      });
+    }
+  </script>
 </body>
 </html>
