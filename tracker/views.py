@@ -732,3 +732,22 @@ def transaction_receipt(request, token):
         'qr_text': qr_text,
         'qr_text_json': json.dumps(qr_text),
     })
+
+from django.views.decorators.cache import cache_control
+
+@cache_control(max_age=0)
+def manifest(request):
+    data = {
+        "name": "UtangTrack",
+        "short_name": "UtangTrack",
+        "description": "Track debts and payments",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#EDE8E1",
+        "theme_color": "#1C2E4A",
+        "icons": [
+            {"src": "/static/tracker/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+            {"src": "/static/tracker/icons/icon-512.png", "sizes": "512x512", "type": "image/png"}
+        ]
+    }
+    return JsonResponse(data)

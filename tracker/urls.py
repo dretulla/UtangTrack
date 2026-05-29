@@ -46,4 +46,6 @@ urlpatterns = [
     # Reports & Export
     path('reports/', views.reports, name='reports'),
     path('export/', views.export_csv, name='export_csv'),
+
+    path('manifest.json', views.manifest, name='manifest'),
 ]
