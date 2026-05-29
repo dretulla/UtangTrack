@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-store-debt-tracker-change-in-production-xyz123'
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['utang-tracker-three.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,7 +72,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# Removed STATICFILES_DIRS to avoid error if static/ folder doesn't exist
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
