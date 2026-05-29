@@ -467,7 +467,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/static/tracker/sw.js');
+        navigator.serviceWorker.register('{% static "tracker/sw.js" %}');
       });
     }
   </script>
