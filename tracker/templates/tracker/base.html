@@ -362,7 +362,7 @@
   {% block extra_styles %}{% endblock %}
 
   <!-- PWA -->
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="{% static 'tracker/manifest.json' %}">
   <meta name="theme-color" content="#1C2E4A">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -467,7 +467,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('{% static "tracker/sw.js" %}');
+        navigator.serviceWorker.register('/sw.js');
       });
     }
   </script>

@@ -16,6 +16,14 @@
       "dest": "/staticfiles/$1"
     },
     {
+      "src": "/sw.js",
+      "dest": "/staticfiles/tracker/sw.js"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/staticfiles/tracker/icons/icon-192.png"
+    },
+    {
       "src": "/(.*)",
       "dest": "config/wsgi.py"
     }
