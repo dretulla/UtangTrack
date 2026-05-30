@@ -369,6 +369,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="UtangTrack">
   <link rel="apple-touch-icon" href="{% static 'tracker/icons/icon-192.png' %}">
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 </head>
 <body>
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
@@ -382,13 +383,13 @@
     </div>
     <div class="sb-section">
       <div class="sb-section-label">Main</div>
-      <a href="{% url 'dashboard' %}" class="sb-link {% if active_nav == 'dashboard' %}active{% endif %}"><span class="sb-icon">⊞</span> Dashboard</a>
-      <a href="{% url 'customer_list' %}" class="sb-link {% if active_nav == 'customers' %}active{% endif %}"><span class="sb-icon">👥</span> Customers</a>
-      <a href="{% url 'transaction_list' %}" class="sb-link {% if active_nav == 'transactions' %}active{% endif %}"><span class="sb-icon">☰</span> Transactions{% if unpaid_count %}<span class="sb-badge">{{ unpaid_count }}</span>{% endif %}</a>
+      <a href="{% url 'dashboard' %}" hx-get="{% url 'dashboard' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="sb-link {% if active_nav == 'dashboard' %}active{% endif %}"><span class="sb-icon">⊞</span> Dashboard</a>
+      <a href="{% url 'customer_list' %}" hx-get="{% url 'customer_list' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="sb-link {% if active_nav == 'customers' %}active{% endif %}"><span class="sb-icon">👥</span> Customers</a>
+      <a href="{% url 'transaction_list' %}" hx-get="{% url 'transaction_list' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="sb-link {% if active_nav == 'transactions' %}active{% endif %}"><span class="sb-icon">☰</span> Transactions{% if unpaid_count %}<span class="sb-badge">{{ unpaid_count }}</span>{% endif %}</a>
     </div>
     <div class="sb-section">
       <div class="sb-section-label">Analytics</div>
-      <a href="{% url 'reports' %}" class="sb-link {% if active_nav == 'reports' %}active{% endif %}"><span class="sb-icon">📊</span> Reports</a>
+      <a href="{% url 'reports' %}" hx-get="{% url 'reports' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="sb-link {% if active_nav == 'reports' %}active{% endif %}"><span class="sb-icon">📊</span> Reports</a>
 
     </div>
     <div class="sb-section">
@@ -416,22 +417,22 @@
       </div>
     </header>
     {% if messages %}<div style="padding:12px 28px 0;">{% for message in messages %}<div class="alert alert-{% if message.tags == 'success' %}success{% elif message.tags == 'error' %}error{% else %}warning{% endif %}"><span class="alert-icon">{% if message.tags == 'success' %}✓{% elif message.tags == 'error' %}✕{% else %}!{% endif %}</span>{{ message }}</div>{% endfor %}</div>{% endif %}
-    <main class="page-content">{% block content %}{% endblock %}</main>
+    <main class="page-content" id="main-content">{% block content %}{% endblock %}</main>
   </div>
   <nav class="mobile-nav" aria-label="Mobile navigation">
-    <a href="{% url 'dashboard' %}" class="mobile-nav-link {% if active_nav == 'dashboard' %}active{% endif %}">
+    <a href="{% url 'dashboard' %}" hx-get="{% url 'dashboard' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="mobile-nav-link {% if active_nav == 'dashboard' %}active{% endif %}">
       <span>🏠</span>
       <span>Home</span>
     </a>
-    <a href="{% url 'customer_list' %}" class="mobile-nav-link {% if active_nav == 'customers' %}active{% endif %}">
+    <a href="{% url 'customer_list' %}" hx-get="{% url 'customer_list' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="mobile-nav-link {% if active_nav == 'customers' %}active{% endif %}">
       <span>👥</span>
       <span>Customers</span>
     </a>
-    <a href="{% url 'transaction_list' %}" class="mobile-nav-link {% if active_nav == 'transactions' %}active{% endif %}">
+    <a href="{% url 'transaction_list' %}" hx-get="{% url 'transaction_list' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="mobile-nav-link {% if active_nav == 'transactions' %}active{% endif %}">
       <span>☰</span>
       <span>Transactions</span>
     </a>
-    <a href="{% url 'reports' %}" class="mobile-nav-link {% if active_nav == 'reports' %}active{% endif %}">
+    <a href="{% url 'reports' %}" hx-get="{% url 'reports' %}" hx-target="#main-content" hx-push-url="true" hx-swap="innerHTML" class="mobile-nav-link {% if active_nav == 'reports' %}active{% endif %}">
       <span>📊</span>
       <span>Reports</span>
     </a>
